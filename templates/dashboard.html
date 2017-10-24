@@ -1,0 +1,70 @@
+{% extends "header.html" %}
+
+{% block body %} 
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Profile</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#blog" role="tab">Blog</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Settings</a>
+  </li>
+</ul>
+
+
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <!-- Home -->
+    <div class="tab-pane active" id="home" role="tabpanel">
+         <div class="card-body">
+        <h4 class="card-title">Home</h4>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+             
+             {% for i in APP_CONTENT["Home"] %}
+                <a class="btn btn-primary" style="margin-top:2%" href="{{i[1]}}" >{{i[0]}}</a>
+             {% endfor %}
+        </div>
+     
+    </div>
+    <!-- Profile -->
+    <div class="tab-pane" id="profile" role="tabpanel">
+         <div class="card-body">
+        <h4 class="card-title">Profile</h4>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+             
+                          {% for i in APP_CONTENT["Profile"] %}
+                <a class="btn btn-primary" style="margin-top:2%"  href="{{i[1]}}">{{i[0]}}</a>
+             {% endfor %}
+    </div>
+    </div>
+    <!-- Messages -->
+    <div class="tab-pane" id="blog" role="tabpanel">
+            <div class="card-body">
+        <h4 class="card-title">Blog</h4>
+        <p class="card-text">This is where my blog area could be to post about new shit :D</p>
+                             {% for i in APP_CONTENT["Blog"] %}
+                <a class="btn btn-primary" style="margin-top:2%"  href="{{i[1]}}">{{i[0]}}</a>
+             {% endfor %}
+    </div> 
+    </div>
+    <!-- Settings -->
+    <div class="tab-pane" id="settings" role="tabpanel">
+             <div class="card-body">
+        <h4 class="card-title">Settings</h4>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              {% for i in APP_CONTENT["Settings"] %}
+                <a class="btn btn-primary" style="margin-top:2%"  href="{{i[1]}}">{{i[0]}}</a>
+             {% endfor %}
+      </div>
+        <img src="https://www.nativeskatestore.co.uk/images/brands/thumbnails_product/1476201767-47912000.jpg" width="70%">
+    </div>
+
+{% endblock %}
