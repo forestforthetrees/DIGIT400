@@ -3,8 +3,8 @@ import MySQLdb
 def connection():
     conn = MySQLdb.connect(host="localhost",
                            user="root",
-                           passwd = "cookies", #put your password here
-                           db = "demopyth")
+                           passwd = "trogdor144", #put your password here
+                           db = "demo")
     
     c = conn.cursor()
     

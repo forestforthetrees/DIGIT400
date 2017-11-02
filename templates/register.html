@@ -11,24 +11,23 @@
 
     {% from "formhelpers.html" import render_field %}
 
-        <form method = "post" action="/register">
+        <form method = "post" action="/register/">
             <dl>
               {{render_field(form.username)}}
               {{render_field(form.email)}}
               {{render_field(form.password)}}
               {{render_field(form.confirm)}}
               {{render_field(form.accept_tos)}}
-
+            </dl>
             <p><input type="submit" value="Register"></p>
 
 
             {% if error %}
 
-            <p class="error"><strong>Error:</strong>{{error}}</p>
+                <p class="error"><strong>Error:</strong>{{error}}</p>
 
 
-            {% endif %}
-            </dl> 
+            {% endif %} 
         </form>
     </div>
 </body>

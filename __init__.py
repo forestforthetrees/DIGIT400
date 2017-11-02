@@ -1,5 +1,6 @@
-from flask import Flask, render_template, flash, url_for, redirect, request, session
+from flask import Flask, render_template, flash, url_for, redirect, request, session, make_response
 from wtforms import Form, BooleanField, TextField, PasswordField, validators
+from datetime import datetime, timedelta
 from passlib.hash import sha256_crypt
 from MySQLdb import escape_string as thwart
 import gc
@@ -27,25 +28,36 @@ def main():
 
 
 @app.route("/dashboard/", methods=["GET","POST"])
+@login_required
 def dashboard():
         flash("This is a flash notification!!!")
         return render_template("dashboard.html", APP_CONTENT = APP_CONTENT)
+    
+@app.route('/introduction-to-app/', methods=['GET'])
+@login_required
+def intro_to_app():
+    try:
+        output = ['Will you ever run out of muffins?',"Non, because I work at ze muffin factory","Wow - Owen Wilson","<p><strong>Hello World!</strong></p>", 42, '42']
+        return render_template("templating_demo.html", output = output)
+    
+    except Exception as e:
+        return(str(e))
     
     
     
 @app.route('/login/', methods=["GET","POST"])
 def login_page():
-    error = ''
+    error = ""
     try:
         c, conn = connection()
         if request.method == "POST":
-            data = c.execute("SELECT * FROM users WHERE username  =('{0}')".format(thwart(request.form['username'])))
+            data = c.execute("SELECT * FROM users WHERE username  =('{0}')".format(thwart(request.form["username"])))
 
             data = c.fetchone()[2]
 
-            if sha256_crypt.veryify(request.form['password'],data):
-                session['logged_in'] = True
-                session['username'] = request.form['username']
+            if sha256_crypt.verify(request.form["password"],data):
+                session["logged_in"] = True
+                session["username"] = request.form["username"]
 
                 flash("You are now logged in!")
                 return redirect(url_for("dashboard"))
@@ -121,9 +133,27 @@ def register_page():
         return(str(e))
 
 
+@app.route('/sitemap.xml/', methods=['GET'])
+def sitemap():
+    try:
+        pages = []
+        week = (datetime.now() - timedelta(days = 7)).date().isoformat()
+        for rule in app.url_map.iter_rules():
+            if "GET" in rule.methods and len(rule.arguments)==0:
+                pages.append(
+                    ["http://104.131.173.185"+str(rule.rule),week]
+                )
+        sitemap_xml = render_template('sitemap_template.xml', pages = pages)
+        response = make_response(sitemap_xml)
+        response.headers["Content-Type"] = "application/xml"
+        return response
+    except Exception as e:
+        return(str(e))
 
 
-
+@app.route('/robots.txt/')
+def robots():
+    return("User-agent: *\nDisallow: /register\nDisallow: /login/")
     
 @app.errorhandler(404)
 def page_not_found(e):
