@@ -1,0 +1,16 @@
+{% extends "header.html" %}
+
+{% block body %}
+
+    <div class="container">
+        <form  action="#" class="form-inline" method="post">
+            <input type="text" class="form-control" placeholder = "Search" name="search" value="{{request.form.search}}">
+            <input class="btn btn-primary" type="submit" value="Search">
+        </form>    
+        
+        <div>
+            <p>{{fuck}}</p>
+        </div>
+    </div>
+
+{% endblock %}

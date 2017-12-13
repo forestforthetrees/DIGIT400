@@ -6,8 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
     
 <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
-    
-    
 <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
@@ -32,72 +30,28 @@
 </head>
 
 <header>
-            <!-- Nav Center -->
-        <ul class="nav justify-content-center navbar-fixed-top">
-            <li class="nav-item justify-content-center">
-                <a class="nav-link active" href="#"><img style="max-width:220px; margin-top: -17px;" src="{{ url_for('static', filename='images/classLogo.png') }}">
-                </a>
-            </li>
-        </ul>
-    {% if session.logged_in %}
-        <!-- Nav Left  -->
-        <ul class="nav justify-content-left navbar-fixed-top">
-                <li class="nav-item" style="max-width:200px">
-                <a href="/dashboard/"><button type="button" class="btn btn-primary" aria-label="Left Align" style="margin-top: 5px; margin-bottom: 5px;"> Dashboard </button></a>
-            </li>
-        </ul>
 
-        <ul class="nav justify-content-end navbar-fixed-top">
-                <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal"><img src="{{ url_for('static',filename='open-iconic-master/svg/account-login.svg')}}" width="20em"> Logout</a>
-            </li>
-        </ul>
-
-    {% else %}
-        <!-- Nav Right -->
-        <ul class="nav justify-content-end navbar-fixed-top">
-                <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal"><img src="{{ url_for('static',filename='open-iconic-master/svg/account-login.svg')}}" width="20em"> Login</a>
-            </li>
-        </ul>
-    {% endif %}    
-            <ul>     
-                <li class="nav-item">
-                    <a class="nav-link" href="/about/">About</a>
-                </li>
-            </ul>
-   
-    
-
-    <!-- Login Model -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">Login</h4>
+    <a href="/dashboard/"><img style="max-width: 225px; position:absolute; margin-left:44%;margin-right:56%;"src="{{ url_for('static', filename='images/classLogo.png') }}"></a>
+      
+    <div class="container" style="background-color:#9fdfbf; margin-top:35px; margin-bottom: 35px; border:2px; border-radius:15px 15px 15px 15px; height:100px;">
+        <nav class="nav" style="justify-content: center; padding-top: 40px;">
+        
+         
+          {% if session.logged_in %}
+            <a class="nav-link" href="/logout/" id="user" data-toggle="modal" data-target="#exampleModal"><img src="{{ url_for('static',filename='open-iconic-master/svg/account-login.svg')}}" width="20em">&nbsp;Logout</a>
+            <a class="nav-link" href="/about/" id="login">About</a>
+        {% else %}
+            <a class="nav-link" href="#" id="user" data-toggle="modal" data-target="#exampleModal"><img src="{{ url_for('static',filename='open-iconic-master/svg/account-login.svg')}}" width="20em">&nbsp;Login</a>
+            
+            <a class="nav-link active" href="#" id="login">Dashboard</a>
+        {% endif %}
+        </nav>  
     </div>
-    <div class="modal-body">
-    <div class="container-fluid">
-    <form action="" class="form-inline" method="post">
-        <input style="margin-right: 2%;" type="text" class="form-control" placeholder="Username" name="username" value="">
-        <input type="password" class="form-control" placeholder="Password" name="password" value="">
-        <input style="margin-top: 2%;" class="btn btn-primary" type="submit" value="Login">
-    </form>
 
-<div class="container">
-<br>
-<p>No account? <a href="/register/">Register here</a>.</p>
-<br>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><!-- END Login Model -->
+
 </header>
-    
-</body>
+<body>    
+<!-- END Login Model -->
 
     <div class="container-fluid" style="min-height: 100%">
         
@@ -116,12 +70,14 @@
         
         {% endwith %}
         
+
+        
         {% block body %}
             
         {% endblock %}
         
     </div>
-    
+</body>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>

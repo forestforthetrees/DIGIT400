@@ -12,9 +12,14 @@
         <input  type="text" class="form-control" placeholder="Password" name="password" value="{{request.form.password}}">
             &nbsp;<br>
             <input class="btn btn-default" type="submit" value="login">
+   
             
         </form>
-        
+        <div class="container">
+            <br>
+            <p>No account? <a href="/register/">Register here</a>.</p>
+            <br>
+        </div>
         <br>
         <code>{{error}}</code>
     </div>

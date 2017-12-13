@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Permanent+Marker|Poiret+One|Ranga');
+
+h1{
+    font-family: 'Poiret One', cursive;
+}
+h2{
+    font-family: 'Poiret One', cursive;
+}
+h4{
+    font-family: 'Permanent Marker', cursive;
+}
+
+#user{
+    position:absolute;
+    left:73%;
+    margin:auto;
+}
+
+#login{
+    position:absolute;
+    left:23%;
+    margin:auto;
+}
+
+/*font-family: 'Amatic SC', cursive;
+font-family: 'Poiret One', cursive;
+font-family: 'Ranga', cursive;
+font-family: 'Permanent Marker', cursive;*/

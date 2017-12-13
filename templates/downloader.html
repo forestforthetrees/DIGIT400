@@ -1,0 +1,25 @@
+{% extends "header.html" %}
+
+{% block body %}
+
+    <div class="container">
+        <br>
+        <h1>File Downloader</h1>
+        <p>Please enter a valid filename to download</p>
+        <br>
+        
+        <form method="post" action="/downloader/">
+            
+            <p><input  type = "text" class = "form-control" placeholder = "Enter file name" name = "filename" value= "{{request.form.filename}}"></p>
+            
+            &nbsp;
+            
+            <p><input class="btn btn-default" type="submit" value="Download"></p>
+            
+        </form>
+        
+        <code>{{error}}</code>
+        
+    </div>
+
+{% endblock %}
